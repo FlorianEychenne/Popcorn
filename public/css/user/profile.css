@@ -1,0 +1,138 @@
+.header img.profile-picture{
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 6px grey;
+}
+
+.header .preference{
+    background-color: #ACC979;
+    padding: 3px 10px 3px 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px grey;
+}
+
+.header .follow .follow{
+    font-size: 19px;
+    padding: 5px 23px 5px 23px;
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+.header .follow .follow:hover{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+    color: #eff2f5;
+}
+
+.header .account{
+    margin-right: 100px;
+}
+
+.header .account button{
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+.header .account button:hover{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+    color: #eff2f5;
+}
+
+.header .follows{
+    line-height: 10px;
+}
+
+.header .follows p:hover{
+    cursor: pointer;
+}
+
+.modal-fade .close{
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+.modalAbonnement img.profilePicture{
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 30px;
+    
+}
+
+.modalAbonnement a{
+    color: #7C80B6;
+}
+
+.modal-content{
+    width: 300px;
+    margin-top: 200px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.modalAbonnement img.modalCover{
+    width: 70px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px grey;
+    margin-right: 30px;
+}
+
+
+/* ////////// News ////////// */
+
+.news{
+    background-color: white !important;
+    border: 1 solid grey;
+    border-radius: 8px;
+}
+
+.review{
+    position: relative;
+    padding: 20px 30px 20px 30px;
+}
+
+.user{
+    margin-bottom: 5px;
+    font-size: 18px;
+    margin-top: -1px;
+}
+
+.user a{
+    color: #7C80B6;
+}
+
+.note{
+    margin-top: -4px;
+}
+
+img.cover
+{
+    width: 320px !important;
+    box-shadow: 1px 1px 5px grey;
+    border-radius: 8px;
+}
+
+.see_comments{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+
+.see_comments:hover{
+    background-color:#6f73af;
+}
+
+.see_comments:focus{
+    background-color:#6f73af;
+}
+
+.review .date .cover{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    width: 80px !important;
+    transition-duration: 0.2s;
+}
+
+.review .date .cover:hover{
+    width: 82px !important;
+}

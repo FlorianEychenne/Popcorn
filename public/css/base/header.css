@@ -1,0 +1,177 @@
+.navbar{
+    background-color: #7C80B6 !important;
+    box-shadow: 1px 1px 4px grey;
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    height: 80px;
+}
+
+.popcorn{
+    font-family: 'Lobster', cursive;
+    font-size: 35px;
+    color: #ACC979 !important;
+    letter-spacing: 5px;
+}
+
+@keyframes upNdown {
+    0% { }
+    50% { transform: rotate(17deg); }
+    100% { }
+}
+
+#logo{
+   width: 50px !important;
+   transform: rotate(30deg);
+   animation: upNdown 5s infinite linear;
+   margin-left: 50px;
+}
+
+.rightside .icon{
+    color: #eff2f5 !important;
+    display: flex;
+    align-items: center;
+    margin-right: -10px;
+}
+
+.rightside .icon p{
+    margin-top: 15px;
+    font-size: 17px;
+}
+
+input.search{
+    height: 40px;
+}
+
+.searchButton{
+    border: none;
+    background-color: #7C80B6;
+}
+
+.fa-search{
+    color: #a9ce6b;
+    font-size: 33px !important;
+}
+
+.fa-search:hover{
+    color: #a1c761;
+}
+
+.see_more{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+.see_more:hover{
+    background-color:#6f73af;
+}
+
+.nav-item a{
+    color: #eff2f5 !important;
+    font-size: 17px;
+}
+
+.seeMovies{
+    color: #eff2f5 !important;
+    margin-top: -3px;
+}
+
+.seeMovies p{
+    margin-top: 16px;
+    font-size: 17px;
+}
+
+.addMovie{
+    color: #eff2f5 !important;
+    margin-top: -3px; 
+}
+
+.addMovie p{
+    margin-top: 16px;
+    font-size: 17px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    #logo{
+        height: 90px !important;
+        margin-top: -11px;
+        margin-left: 15px;
+    }
+
+    .popcorn{
+        font-size: 45px;
+        margin-top: -20px;
+    }
+
+    .navbar-toggler{
+        margin-top: -16px;
+        font-size: 25px;
+    }
+
+    .navbar-nav{
+        background-color: #7C80B6;
+        width: 412px;
+        margin-left: -27px;
+        border-radius: 8px;
+        flex-direction: row;
+        padding: 5px 10px 5px 10px;
+    }
+
+    .navbar-nav i{
+        font-size: 37px !important;
+    }
+
+    .seeMovies p{
+        display: none;
+    }
+
+    .addMovie p{
+        display: none;
+    }
+
+    .rightside .icon1{
+        position: absolute;
+        top: 90px;
+        right: 70px;
+    }
+
+    .rightside .icon1 i{
+        font-size: 37px !important;
+    }
+
+    .rightside .icon1 p{
+        display: none;
+    }
+
+    .rightside .icon2{
+        position: absolute;
+        top: 90px;
+        right: -5px;
+    }
+
+    .rightside .icon2 i{
+        font-size: 37px !important;
+    }
+
+    .rightside .icon2 p{
+        display: none;
+    }
+
+    form .search{
+        display: none;
+    }
+
+    form .searchButton{
+        position: absolute;
+        top: 90px;
+        right: 200px;
+        font-size: 37px;
+        background-color: none;
+    }
+
+    form .searchButton i{
+        color: #eff2f5 !important;
+    }
+}

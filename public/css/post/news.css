@@ -1,0 +1,200 @@
+.row{
+    background-color: white !important;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px 10px 20px 10px;
+}
+
+
+/* -- NOUVEAUX POSTS ---------------------------- */
+.post{
+    position: relative;
+    padding: 20px 30px 20px 30px;
+    margin-bottom: -15px;
+}
+
+.review{
+    padding: 20px 30px 20px 30px;
+    margin-bottom: -15px;
+}
+
+.fa-newspaper{
+    position: absolute;
+    top: 25px;
+    left: -70px;
+    font-size: 45px;
+    color: #7C80B6;
+}
+
+img.cover{
+    width: 320px !important;
+    box-shadow: 1px 1px 5px grey;
+    border-radius: 8px;
+}
+
+.review.date.cover{
+    width: 320px !important;
+    box-shadow: 1px 1px 5px grey;
+    border-radius: 8px;
+}
+
+.col-infos .infos p{
+    margin-bottom: 4px;
+}
+
+.see_more{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+.see_more:hover{
+    background-color:#6f73af;
+}
+
+
+/* -- NOUVELLES REVIEWS ---------------------------- */
+
+.review{
+    position: relative;
+}
+
+.user{
+    margin-bottom: 5px;
+    font-size: 18px;
+    margin-top: -1px;
+}
+
+.user a{
+    color: #7C80B6;
+}
+
+.note{
+    margin-top: -4px;
+}
+
+.see_comments{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+
+.see_comments:hover{
+    background-color:#6f73af;
+}
+
+.see_comments:focus{
+    background-color:#6f73af;
+}
+
+.review .date .cover{
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 80px !important;
+    transition-duration: 0.2s;
+}
+
+.review .date .cover:hover{
+    width: 82px !important;
+}
+
+.fa-user-friends{
+    position: absolute;
+    top: 25px;
+    left: -70px;
+    font-size: 45px;
+    color: #7C80B6;
+}
+
+/* -- NOUVELLES REVIEWS FAVPOSTS ---------------------------- */
+
+.heart{
+    position: absolute;
+    top: 25px;
+    left: -70px;
+    font-size: 45px;
+    color: #7C80B6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .newsContent{
+        width: 100% !important;
+        padding: 0 0 0 0;
+    }
+
+    .date{
+        display:block !important;
+        margin-top: -8px !important;
+    }
+
+    .note_title{
+        display: block !important;
+        text-align: center;
+    }
+    
+    .review .date .cover{
+        display: none;
+    }
+
+    .fa-newspaper{
+        font-size: 40px;
+        top: 0px;
+        left: -5px;
+    } 
+
+    .fa-user-friends{
+        font-size: 40px;
+        top: 0px;
+        left: -5px;
+    }
+
+    .heart{
+        font-size: 40px;
+        top: 0px;
+        left: -5px;
+    }
+
+    img.cover{
+    margin-bottom: 20px;
+    border-radius: 8px;
+    } 
+
+    .see_more{
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+    .see_comments{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+    }
+
+    .addComment{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+        margin-top: 10px ;
+    }
+
+    .commentsList{
+        width: 100% !important;
+    }
+
+    .comment .col-9{
+        width: 100% !important;
+    }
+
+    .comment .col-9 button{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+    }
+
+    .col-infos .text-center{
+        margin-top: 10px;
+    }
+}
+
+

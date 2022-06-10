@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/user/edit.css')}}">
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row position-relative">
+        <a href="{{ path('user_profile', {id : app.user.id})}}">
+            <button class="backToAccount btn btn-primary">Revenir sur mon compte</button>
+        </a>
+        <a href="{{ path('user_profile', {id : app.user.id})}}">
+            <button class="myProfile btn btn-primary">Accéder à mon profil public</button>
+        </a>
+        <div class="left col-3">
+            <img src="{{ asset( 'uploads/profilePicture/'~ user.profilePicture) }}" alt="profile-pic" class="profile-picture"/>
+            
+            <h2 class="username">{{ user.username }}</h2>
+            
+        </div>
+        <div class="modify col-8 ms-5">
+            <h1 class="title">Modifier mes informations</h1>
+            <form method="post" enctype="multipart/form-data">
+                <div class="input">
+                    <label for="firstname" class="mt-5 me-3 mb-4 fs-5 fw-bold">Prénom :</label>
+                    <input type="text" class="fs-5" name="firstname" id="firstname" value="{{ user.firstname }}">
+                </div>
+                <div class="input">
+                    <label for="lastname" class="mt-2 me-3 mb-4 fs-5 fw-bold">Nom :</label>
+                    <input type="text" class="fs-5" name="lastname" id="lastname" value="{{ user.lastname }}">
+                </div>
+
+                <div class="input">
+                    <label for="username" class="mt-2 me-3 mb-4 fs-5 fw-bold">Pseudo :</label>
+                    <input type="text" class="fs-5" name="username" id="username" value="{{ user.username }}">
+                </div>
+
+                <div class="input">
+                    <label for="email" class="mt-2 me-3 mb-4 fs-5 fw-bold">Adresse mail :</label>
+                    <input type="text" class="fs-5" name="email" id="email" value="{{ user.email }}">
+                </div>
+
+                <div class="input">
+                    <label for="gender" class="mt-2 me-3 mb-4 fs-5 fw-bold">Genre :</label>
+                    <select name="gender" id="gender" class="fs-5">
+                        {% for gender in genders %}
+                            <option value="{{ gender }}" {{ (gender == user.gender) ? 'selected' : '' }}>{{ gender }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input">
+                    <label for="birthday" class="mt-2 me-3 mb-4 fs-5 fw-bold">Date de naissance :</label>
+                    <input type="date" class="date fs-5" name="birthday" id="birthday" value="{{ user.birthday|date('Y-m-d') }}">
+                </div>
+
+                <div class="input">
+                    <label for="image" class="mt-2 me-3 mb-4 fs-5 fw-bold">Photo de profil :</label>
+                    <input type="file" name="image" id="image" class="fs-6" accept="image/*">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="preference" class="mt-2 me-3 mb-4 fs-5 fw-bold">Catégories</label>
+                    {% for preference in preferences %}
+                    <label>
+                        <input type="checkbox" name="preference[]" value="{{preference}}" {{ (preference in user.preferences) ? 'checked' : '' }}> {{ preference }}
+                    </label>
+                    {% endfor %}
+                </div>
+                <button class="save_button btn btn-primary mb-3" name="submit" type="submit">Enregistrer les modifications</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

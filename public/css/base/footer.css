@@ -1,0 +1,20 @@
+
+.mb-1 a {
+    text-decoration: none;
+}
+.footer{
+    background-color: #7C80B6 !important;
+    position:static;
+    bottom:0;
+    margin-top: 100px;
+}
+
+.foot{
+    background-color: #7C80B6 !important;
+}
+
+.fooooter{
+    background-color: #7C80B6 !important;
+    border: none !important;
+}
+

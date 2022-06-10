@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/post/edit.css')}}">
+{% endblock %}
+
+{% block title %}Modifier un post{% endblock %}
+
+{% block body %}
+<form method="post" >
+    <div class="container w-75 mt-4 fs-5 mb-4">
+        <h1 class="mb-4">Modifier la page film "{{ post.title }}"</h1>
+        <div class="mb-3">
+            <label for="title">Titre du film</label>
+            <input type="text" name="title" id="title" class="form-control" value="{{ post.title }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="synopsis">Synopsis</label>
+            <textarea name="synopsis" id="synopsis" rows="6" class="form-control" value="{{ post.synopsis }}">{{ post.synopsis }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="director">Réalisateur</label>
+            <input type="text" name="director" id="director" class="form-control" value="{{ post.director }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="actors">Acteurs</label>
+            <input type="text" name="actors" id="actors" rows="4" class="form-control" value="{{ post.actors }}">
+        </div>
+
+        <div class="mb-3">
+			<label for="released_at" class="form-label">Date de sortie</label>
+			<input type="date" name="released_at" id="released_at" class="form-control" value="{{ post.releasedAt|date('Y-m-d') }}">
+		</div>
+
+        <div class="mb-3">
+			<label for="image" class="form-label">Affiche du film</label>
+			<input type="file" name="image" id="image" class="form-control" accept="image/*" value="{{ post.image }}">
+		</div>
+
+        <div class="mb-3">
+            <label for="video">Vidéo</label>
+            <input type="text" name="video" id="video" placeholder="Mettez un lien url valide" class="form-control" value="{{ post.video }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Catégories</label>
+            {% for category in categories %}
+            <label>
+                <input type="checkbox" name="category[]" value="{{category}}" {{ (category in post.categories) ? 'checked' : '' }}> {{ category }}
+            </label>
+            {% endfor %}
+        </div>
+
+        <button class="save_button btn btn-primary mb-3" type="submit">Enregistrer les modifications</button>
+
+        <a class="back_button btn btn-primary mb-3" href="{{ path('post_view', {id: post.id}) }}">Revenir sur la publication</a>
+    </div>
+</form>
+
+{% endblock %}

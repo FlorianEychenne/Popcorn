@@ -1,0 +1,192 @@
+.col-infos{
+    margin-top: -50px;
+}
+
+img.cover{
+    border-radius: 8px;
+    width: 500px;
+    box-shadow: 1px 1px 8px grey;
+}
+
+.title{
+    font-size: 53px !important;
+}
+
+.infos p{
+    margin-bottom: 3px;
+    font-size: 18px;
+}
+
+.synopsis_short{
+    font-size: 22px;
+}
+
+.synopsis_medium{
+    font-size: 20px;
+}
+
+.synopsis_long{
+    font-size: 17px;
+}
+
+.add_review{
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+.add_review:hover{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+
+.suppr_fav{
+    color: #a9ce6b;
+    border-color:#a9ce6b;
+}
+
+.suppr_fav:hover{
+    border-color:#a9ce6b;
+    background-color:#a9ce6b;
+} 
+
+.add_fav{
+    color: #a9ce6b;
+    border-color:#a9ce6b;
+}
+
+.add_fav:hover{
+    border-color:#a9ce6b;
+    background-color:#a9ce6b;
+} 
+
+.row{
+    position: relative;
+}
+
+.admin_buttons{
+    position: absolute;
+    top: 0px;
+}
+
+.post_admin{
+    font-size: 13px;
+}
+
+.youtube{
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+
+/*//// REVIEWS ////*/
+
+.form-control{
+    padding: 15px;
+}
+
+.reviews p.user{
+    margin-bottom: 2px;
+}
+
+.see_comments{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+
+.see_comments:hover{
+    background-color:#6f73af;
+    border-color: #7C80B6;
+}
+
+.see_comments:focus{
+    background-color:#6f73af;
+}
+
+.heart{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 45px;
+    color: #7C80B6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+    .block{
+        display: block;
+    }
+
+    .heart{
+        top: 500px;
+        left: 10px;
+    }
+
+    .buttons{
+        width: 100%;
+    }
+
+    .buttons a{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 90%;
+    }
+
+    .col-infos .suppr_fav{
+        width: 90%;
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+    .col-infos .add_fav{
+        width: 90%;
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+    .youtube{
+        width: 100% !important;
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+    .youtube iframe{
+        height: 250px;
+    }
+
+    #reviewList{
+        width: 90% !important;
+    }
+
+    .admin_buttons{
+        top: -38px;
+        left: 70px;
+    }
+
+    .comment .col-6{
+        width: 100% !important;
+    }
+
+    .comment .col-6 button{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+    }
+
+    .commentsList{
+        width: 100% !important;
+    }
+
+    .see_comments{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+    }
+
+    .addComment{
+        margin-left: 50%;
+        transform: translate(-50%);
+        width: 80%;
+        margin-top: 10px ;
+    }
+}

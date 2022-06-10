@@ -1,0 +1,100 @@
+.profile-picture{
+    width: 300px;
+    border-radius: 100%;
+}
+
+.admin{
+    color: #eff2f5;
+    background-color: #57C647;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 80px;
+    padding: 3px 0px 3px 0px;
+    text-align: center;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.user{
+    color: #f8f9fa;
+    background-color: #479EC6;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 100px;
+    padding: 3px 0px 3px 0px;
+    text-align: center;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.username{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.modifyInfos{
+    position: absolute;
+    right: 0;
+    background-color:#7C80B6;
+    border-color:#7C80B6;
+    margin-right: 60px;
+}
+
+.modifyInfos:hover{
+    background-color:#6f73af;
+    border-color: #6f73af;    
+}
+
+.myProfile{
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color:#a9ce6b;
+    border-color:#a9ce6b;
+    margin-right: 60px;
+}
+
+.myProfile:hover{
+    background-color:#9cc25c;
+    border-color: #9cc25c;    
+}
+
+.modal-fade .close{
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+.modalAbonnement img.profilePicture{
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 30px;
+    
+}
+
+.modalAbonnement a{
+    color: #7C80B6;
+}
+
+.modal-content{
+    width: 300px;
+    margin-top: 200px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.modalAbonnement img.modalCover{
+    width: 70px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 5px grey;
+    margin-right: 30px;
+}
+
+.left .follows{
+    line-height: 10px;
+}
+
+.left .follows p:hover{
+    cursor: pointer;
+}

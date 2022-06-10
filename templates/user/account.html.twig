@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user/account.css')}}">
+{% endblock %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row position-relative">
+        <a href="{{ path('user_edit')}}">
+            <button class="modifyInfos btn btn-primary">Modifier mes informations</button>
+        </a>
+        <a href="{{ path('user_profile', {id : app.user.id})}}">
+            <button class="myProfile btn btn-primary">Accéder à mon profil public</button>
+        </a>
+        <div class="left col-3">
+            <img src="{{ asset( 'uploads/profilePicture/'~ user.profilePicture) }}" alt="profile-pic" class="profile-picture"/>
+            {% if role == 'Admin' %}
+                <p class="admin">{{ role }}</p>
+            {% else %}
+                <p class="user">{{ role }}</p>
+            {% endif %}
+            <h2 class="username">{{ user.username }}</h2>
+            <div class="follows mt-5 text-center">
+                <p data-bs-toggle="modal" data-bs-target="#abonnes"><span class="fs-5 me-1">{{ numberOfAbonnes }}</span> abonnés</p>
+                <p data-bs-toggle="modal" data-bs-target="#abonnements"><span class="fs-5 me-1">{{ numberOfAbonnements }}</span> abonnements</p>
+                <p data-bs-toggle="modal" data-bs-target="#favposts"><span class="fs-5 me-1">{{ numberFavposts }}</span> films favoris</p>
+            </div>
+
+            <!-- Modals -------------------------->
+            
+            <!-- Abonnés -->
+            <div class="modal fade" id="abonnes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-3" id="exampleModalLabel">Abonnés</h5>
+                    </div>
+                    <div class="modal-body fs-5">
+                        {% if abonnes is empty %}
+                            <p>Aucun abonné</p>
+                        {% else %}
+                            {% for abonne in abonnes %}
+                            <p class="modalAbonnement">
+                                <a href="{{ path('user_profile', {'id':abonne.id}) }}" class="text-decoration-none">
+                                    <img src="{{ asset('uploads/profilePicture/'~ abonne.profilePicture) }}" alt="Photo de profil" class="profilePicture">{{ abonne.username }}
+                                </a>
+                            </p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Abonnements -->
+            <div class="modal fade" id="abonnements" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-3" id="exampleModalLabel">Abonnements</h5>
+                    </div>
+                    <div class="modal-body fs-5">
+                        {% if abonnements is empty %}
+                            <p>Aucun abonnement</p>
+                        {% else %}
+                            {% for abonnement in abonnements %}
+                                <p class="modalAbonnement">
+                                    <a href="{{ path('user_profile', {'id':abonnement.id}) }}" class="text-decoration-none">
+                                        <img src="{{ asset('uploads/profilePicture/'~ abonnement.profilePicture) }}" alt="Photo de profil" class="profilePicture">{{ abonnement.username }}
+                                    </a>
+                                </p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Films -->
+            <div class="modal fade" id="favposts" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content" style="width:500px">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-3" id="exampleModalLabel">Films favoris</h5>
+                    </div>
+                    <div class="modal-body fs-5">
+                        {% if favposts is empty %}
+                            <p>Aucun films en favoris</p>
+                        {% else %}
+                            {% for post in favposts %}
+                            <p class="modalAbonnement">
+                                <a href="{{ path('user_profile', {'id':post.id}) }}" class="text-decoration-none">
+                                    <img src="{{ asset('uploads/covers/'~ post.image) }}" alt="Affiche du film" class="modalCover">{{ post.title }}
+                                </a>
+                            </p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- End Modals -------------------------->
+
+        </div>
+        <div class="col-8 ms-5">
+            <h1 class="title">Mes informations</h1>
+            <p class="mt-5 fs-5 mb-4"><span class="fw-bold me-3">Prénom : </span> {{ user.firstname }}</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Nom : </span> {{ user.lastname }}</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Adresse mail : </span> {{ user.email }}</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Genre : </span> {{ user.gender }}</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Date de naissance : </span>{{ user.birthday|date('d/m/Y') }}</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Âge : </span> {{ age }} ans</p>
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Inscrit le : </span>{{ user.registerAt|date('Y/m/d') }} à {{ user.registerAt|date('H:i:s') }}</p>
+
+            <p class="fs-5 mb-4"><span class="fw-bold me-3">Catégorie(s) préférée(s) : </span> 
+                {% set i = 1 %}
+                {% for preference in preferences %}
+                    {% if i != preferences|length %}
+                        {{ preference }} /
+                    {% else %}
+                        {{ preference }}
+                    {% endif %}
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

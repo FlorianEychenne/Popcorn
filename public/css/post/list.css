@@ -1,0 +1,143 @@
+/* CATEGORIES */
+
+
+.categories {
+    left: 20px;
+    position: fixed;
+    top: 130px;
+    z-index: 1;
+}
+
+/*  Violet ?  */ 
+
+.category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+    border-radius: 7px;
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: #242747;
+    border-color:#242747;
+    box-shadow: 1px 3px 5px grey;
+    height: 40px;
+    font-size: 17px !important;
+}
+
+/* marginleft = 5px OMG */
+
+.category:hover {
+    background-color: grey;
+    -webkit-filter: brightness(70%);
+            filter: brightness(70%);
+           
+}
+
+
+
+/* GRID */
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+.post {
+    color: #242747;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 15px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+.post img {
+    width: 285px;
+    height: 400px;
+    background-position: center;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.post a {
+    margin-bottom: 50px;
+}
+
+.button{
+    position: relative;
+    border: none;
+    transition: .2s ease-in;
+}
+
+.button:before,
+.button:after {
+    position: absolute;
+    content: "";
+}
+
+.button:hover{
+    background: #7C80B6;
+    box-shadow: 0 0 5px #7C80B6, 0 0 10px #7C80B6, 0 0 15px #7C80B6, 0 0 20px #7C80B6;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+	.categories {
+		position:static;
+        display:flex!important;
+        flex-wrap: nowrap!important;
+        overflow: auto!important;
+        margin-top: 30px !important;
+       
+	}
+    .category {
+        min-width: 210px;
+		width:210px;
+        margin-left: 7px;
+	}
+    * {
+        text-rendering: optimizeLegibility;
+        }
+
+    *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+    .post {
+        color: #242747;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 15px;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+	}
+
+    .post img {
+        width: 185px;
+        height: 260px;
+        background-position: center;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        margin-left:50%;
+        transform:translate(-50%)
+	}
+
+    .post h3{
+        text-align: center;
+        font-size: 28px;
+    }
+
+    .post a{
+        width: 90%;
+        margin-left: 50%;
+        transform: translate(-50%);
+    }
+
+}
+
+

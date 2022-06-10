@@ -1,0 +1,304 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/post/news.css')}}">
+{% endblock %}
+
+{% block title %}Mes actualités{% endblock %}
+
+{% block body %}
+<style>
+    .comment { display: none; }
+    .commentsList { display: none; }
+    .reviews { display: none; }
+</style>
+<div class="newsContent container-sm mt-4 w-75">
+    {% for news in flux %}
+
+            <!-- NOUVELLES REVIEWS ---------------------------- -->
+
+            {% if news.type == 'review' %}
+            <div class="review item-review">
+                <i class="fas fa-user-friends"></i>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="date d-flex mt-1">
+                            <p><small class="text-muted">
+                                {% set difference = date(news.value.publishedAt).diff(date(currentDate)) %}
+                                {% if difference.days >= 1 %}
+                                    Il y a {{ difference.days }} jours
+                                {% else %}
+                                    Aujourd'hui à {{ news.value.publishedAt|date('H:i') }}
+                                {% endif %}
+                                </small>
+                            </p>
+                            <p class="user text-muted ms-4">
+                                Nouvelle critique de 
+                                <a href="{{ path('user_profile', {'id':news.value.user.id}) }}" style="text-decoration: none;">{{ news.value.user.username }}
+                                    {# <img src="{{ asset( 'uploads/profilePicture/' ~ review.user.profilePicture) }}" alt="profile picture user" style="width:50px;"> #}
+                                </a>
+                                sur 
+                                <a href="{{ path('post_view', {id: news.value.post.id}) }}" style="text-decoration: none;">{{ news.value.post.title }}</a>
+                            </p>
+                            {% if news.value.post.image is not empty  %}
+                                <a href="{{ path('post_view', {id: news.value.post.id}) }}" style="text-decoration: none;">
+                                    <img class="img-fluid cover" src="{{ asset('uploads/covers/' ~ news.value.post.image) }}" alt="affiche">
+                                </a>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="note_title d-flex align-items-center mt-3 mb-2">
+                            <p class="fs-5 mb-1">{{ news.value.title }}</p>
+                            <div class="note ms-3">
+                                {% if news.value.note == 1 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 2 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 3 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 4 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 5 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <p class="mt-1 mb-4">{{ news.value.content|nl2br }}</p>
+                        
+                        <button class="see_comments btn btn-primary">Voir les réponses</button>
+                        <button class="addComment btn btn-outline-dark">Répondre à {{ news.value.user.username }}</button>
+
+                        <div class="comment" style="display: none;">
+                            <form method="post" action="{{ path('comments_add_news', {'id':news.value.id}) }}">
+                                <div class="mb-3 col-9 mt-3">
+                                    <textarea name="content" id="content" rows="4" class="form-control"
+                                        placeholder="Répondre à {{ news.value.user.username }}"></textarea>
+                                    <button class="btn btn-dark mt-3" type="submit">Répondre</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="commentsList form-control mt-2 w-75 border-0">
+                            {% for comment in comments|reverse %}
+                            {% if news.value.id == comment.review.id %}
+                                <hr>
+                                <p class="mb-2">
+                                    <small class="text-muted">Réponse de </small>
+                                    <a href="{{ path('user_profile', {'id':news.value.user.id}) }}" style="text-decoration: none;">{{ comment.user.username }}</a>
+                                    <small class="text-muted"> le </small>{{ comment.publishedAt|date('d/m/Y') }}
+                                    <small class="text-muted"> à </small>{{ comment.publishedAt|date('H:i') }}
+                                </p>
+                                <p class="mb-3">{{ comment.content}}<p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+           
+            <!-- NOUVEAUX POSTS ---------------------------- -->
+
+            {% elseif news.type == 'post' %}
+            <div class="post d-flex">
+                <i class="far fa-newspaper"></i>
+                <div class="row">
+                    <div class="col-12 col-lg-5 text-center">
+                        {% if news.value.image is not empty  %}
+                            <img class="img-fluid cover" src="{{ asset('uploads/covers/' ~ news.value.image) }}" alt="affiche">
+                        {% endif %}
+                    </div>
+                    <div class="col-infos col-12 col-lg-7 mb-3">
+                        {% set difference = date(news.value.publishedAt).diff(date(currentDate)) %}
+                            {% if difference.days >= 1 %}
+                                Il y a {{ difference.days }} jours
+                            {% else %}
+                                Aujourd'hui à {{ news.value.publishedAt|date('H:i') }}
+                            {% endif %}
+                        <h1 class="text-center mb-4">{{ news.value.title }} </h1>
+                        <div class="categories text-end">
+                            {% for category in news.value.categories %}
+                                <small class="badge bg-secondary">{{ category }}</small>
+                            {% endfor %}
+                        </div>
+                        <div class="infos mb-3">
+                            <p><small class="text-muted">De</small> {{ news.value.director|nl2br }}</p>
+                            <p><small class="text-muted">Avec</small> {{ news.value.actors|nl2br }}</p>
+                            <p><small class="text-muted">Sortie le </small>{{ news.value.releasedAt|date('d/m/Y') }}</p>
+                        </div>
+                        
+                        <p class="synopsis">{{ news.value.synopsis|nl2br|length > 300 ? news.value.synopsis|slice(0, 300) ~ ' [...]' : news.value.synopsis }}</p>
+                        
+                        <a href="{{ path('post_view', {id: news.value.id}) }}" class="see_more btn btn-secondary">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NOUVELLES REVIEWS FAVPOSTS ---------------------------- -->
+
+            {% elseif news.type == 'favReview' %}
+            <div class="review">
+                <i class="heart fas fa-heart"></i>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="date d-flex mt-1">
+                            <p><small class="text-muted">
+                            {% set difference = date(news.value.publishedAt).diff(date(currentDate)) %}
+                                {% if difference.days >= 1 %}
+                                    Il y a {{ difference.days }} jours
+                                {% else %}
+                                    Aujourd'hui à {{ news.value.publishedAt|date('H:i') }}
+                                {% endif %}
+                            </small></p>
+                            <p class="user text-muted ms-4">
+                                Nouvelle critique de 
+                                <a href="{{ path('user_profile', {'id':news.value.user.id}) }}" style="text-decoration: none;">{{ news.value.user.username }}
+                                    {# <img src="{{ asset( 'uploads/profilePicture/' ~ review.user.profilePicture) }}" alt="profile picture user" style="width:50px;"> #}
+                                </a>
+                                sur 
+                                <a href="{{ path('post_view', {id: news.value.post.id}) }}" style="text-decoration: none;">{{ news.value.post.title }}</a>
+                            </p>
+                            {% if news.value.post.image is not empty  %}
+                                <a href="{{ path('post_view', {id: news.value.post.id}) }}" style="text-decoration: none;">
+                                    <img class="img-fluid cover" src="{{ asset('uploads/covers/' ~ news.value.post.image) }}" alt="affiche">
+                                </a>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="note_title d-flex align-items-center mt-3 mb-2">
+                            <p class="fs-5 mb-1">{{ news.value.title }}</p>
+                            <div class="note ms-3">
+                                {% if news.value.note == 1 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 2 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 3 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 4 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="far fa-star  text-warning"></i>
+                                {% endif %}
+                                {% if news.value.note == 5 %}
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                <i class="fas fa-star  text-warning"></i>
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        <p class="mt-1 mb-4">{{ news.value.content|nl2br }}</p>
+                        
+                        <button class="see_comments btn btn-primary">Voir les réponses</button>
+                        <button class="addComment btn btn-outline-dark">Répondre à {{ news.value.user.username }}</button>
+
+                        <div class="comment" style="display:none;">
+                            <form method="post" action="{{ path('comments_add_news', {'id':news.value.id}) }}">
+                                    <div class="mb-3 col-9 mt-3">
+                                        <textarea name="content" id="content" rows="4" class="form-control"
+                                            placeholder="Répondre à {{ news.value.user.username }}"></textarea>
+                                        <button class="btn btn-dark mt-3" type="submit">Répondre</button>
+                                    </div>
+                            </form>
+                        </div>
+                        <div class="commentsList form-control mt-2 w-75 border-0">
+                            {% for comment in comments|reverse %}
+                            {% if news.value.id == comment.review.id %}
+                                <hr>
+                                <p class="mb-2">
+                                    <small class="text-muted">Réponse de </small>
+                                    <a href="{{ path('user_profile', {'id':news.value.user.id}) }}" style="text-decoration: none;">{{ comment.user.username }}</a>
+                                    <small class="text-muted"> le </small>{{ comment.publishedAt|date('d/m/Y') }}
+                                    <small class="text-muted"> à </small>{{ comment.publishedAt|date('H:i') }}
+                                </p>
+                                <p class="mb-3">{{ comment.content}}<p>
+                            {% endif %}
+                            {% endfor %}
+                        </div>           
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+    {% endfor %} 
+</div>
+
+{% endblock %}
+    
+{% block javascripts %}
+<script>
+
+    const addComment = document.getElementsByClassName("addComment");
+    const comment = document.getElementsByClassName("comment");
+
+    for(let i=0;i<addComment.length;i++){
+        addComment[i].onclick = function() {
+            if (comment[i].style.display !== "block") {
+                comment[i].style.display = "block";
+            } else {
+                comment[i].style.display = "none";
+            }
+        }
+    }
+
+    
+    const see_comments = document.getElementsByClassName("see_comments");
+    const commentsList = document.getElementsByClassName("commentsList");
+    
+    for(let i=0; i<see_comments.length; i++){
+        see_comments[i].onclick = function () {
+            if (commentsList[i].style.display !== "block") {
+                commentsList[i].style.display = "block";
+            } else {
+                commentsList[i].style.display = "none";
+            }
+        };
+    }
+    
+</script>
+{% endblock %}

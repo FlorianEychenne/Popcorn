@@ -1,0 +1,48 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/base/footer.css')}}">
+{% endblock %}
+
+<div class="container-fluid footer">
+
+  <footer>
+    <div class="container p-4">
+      <div class="row fooooter">
+        <div class="col-12 d-flex justify-content-around">
+          <div class="space">
+          <h5 class="mb-3" style="letter-spacing: 2px; color: #ffff;">CONTACT</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-1">
+              <a href="" style="color: #EDF7F7;">72 avenue de la Gloire, Toulouse</a>
+            </li>
+            <li class="mb-1">
+              <a href="" style="color: #EDF7F7;">07 12 34 56 78</a>
+            </li>
+            <li class="mb-1">
+              <a href="#!" style="color: #EDF7F7;">contact@popcorn.com</a>
+            </li>
+          </ul>
+          </div>
+          <div class="space">
+          <h5 class="mb-3" style="letter-spacing: 2px; color: #ffff;">POPCORN</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-1">
+              <a href="{{ path('news')}}" style="color: #EDF7F7;">Fil d'actualités</a>
+            </li>
+            <li class="mb-1">
+              <a href="{{ path('posts')}}" style="color: #EDF7F7;">Notre catalogue</a>
+            </li>
+            <li class="mb-1">
+              <a href="#!" style="color: #EDF7F7;">Politique de confidentialité</a>
+            </li>
+          </ul>
+          </div>
+      </div>
+    </div>
+    <div class="text-center p-3">
+      
+      <p class="foot text-light" href="#">© 2022 Copyright: POPCORN.COM</p>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+</div>

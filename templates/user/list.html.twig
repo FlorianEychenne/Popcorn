@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% for user in users %}
+    <img src="{{ asset( 'uploads/profilePicture/'~ user.profilePicture) }}" alt="profile-pic" class="profile-picture" style="width:100px;">
+    {{user.username}}
+    {% for preference in user.preferences %}
+        {{preference}}
+    {% endfor %}
+{% endfor %}
+
+{% endblock %}

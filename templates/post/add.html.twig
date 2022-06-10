@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un post{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center mt-4">Ajouter un post</h1>
+
+<form method="post" enctype="multipart/form-data" class="fs-5">
+        <div class="mb-3">
+            <label for="title">Titre du film</label>
+            <input type="text" name="title" id="title" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="synopsis">Synopsis</label>
+            <textarea name="synopsis" id="synopsis" rows="6" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="director">Réalisateur</label>
+            <input type="text" name="director" id="director" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="actors">Acteurs</label>
+            <input type="text" name="actors" id="actors" rows="4" class="form-control">
+        </div>
+
+        <div class="mb-3">
+			<label for="released_at" class="form-label">Date de sortie</label>
+			<input type="date" name="released_at" id="released_at" class="form-control">
+		</div>
+
+        <div class="mb-3">
+			<label for="image" class="form-label">Affiche du film</label>
+			<input type="file" name="image" id="image" class="form-control" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp">
+		</div>
+
+        <div class="mb-3">
+            <label for="video">Vidéo</label>
+            <input type="text" name="video" id="video" placeholder="Mettez un lien url valide" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Catégorie</label>
+            {% for category in categories %}
+            <label>
+                <input type="checkbox" name="category[]" value="{{category}}">{{ category }}
+            </label>
+            {% endfor %}
+        </div>
+
+        <button class="btn btn-primary mt-3 mb-3" type="submit">Enregistrer</button>
+    </form>
+
+{% endblock %}

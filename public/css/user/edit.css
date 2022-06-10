@@ -1,0 +1,69 @@
+.profile-picture{
+    width: 300px;
+    border-radius: 100%;
+}
+
+.username{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.backToAccount{
+    position: absolute;
+    right: 0;
+    background-color:#7C80B6;
+    border-color:#7C80B6;
+    margin-right: 60px;
+}
+
+.backToAccount:hover{
+    background-color:#6f73af;
+    border-color: #6f73af;    
+}
+
+.myProfile{
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color:#a9ce6b;
+    border-color:#a9ce6b;
+    margin-right: 60px;
+}
+
+.myProfile:hover{
+    background-color:#9cc25c;
+    border-color: #9cc25c;    
+}
+
+.modify{
+    display: block;
+}
+
+form{
+    margin-top: -8px;
+}
+
+.input{
+    margin-bottom: -8px;
+}
+
+.input input{
+    margin-left: -3px;
+}
+
+.input input.date{
+    margin-left: -2px;
+}
+
+.input select{
+    margin-left: -4px;
+}
+
+.save_button{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+}
+
+.save_button:hover{
+    background-color:#6f73af;
+}

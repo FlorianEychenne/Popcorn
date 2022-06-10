@@ -1,0 +1,218 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/post/view.css')}}">
+{% endblock %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .review { display: none; }
+    .comment { display: none; }
+    .commentsList { display: none; }
+</style>
+
+    <div class="container-sm mt-5">
+        <div class="row block align-items-center">
+            <div class="col-sm-5">
+                {% if post.image is not empty  %}
+                <img class="img-fluid cover" src="{{ asset('uploads/covers/' ~ post.image) }}" alt="affiche">
+                {% endif %}
+            </div>
+            <div class="col-infos col-sm-7 mt-3">
+                <h1 class="title text-center">{{ post.title }} </h1>
+                <div class="categories text-end">
+                    {% for category in post.categories %}
+                        <small class="badge bg-secondary">{{ category }}</small>
+                    {% endfor %}
+                </div>
+                <div class="infos mb-3">
+                    <p class="mt-4"><small class="text-muted">De</small> {{ post.director|nl2br }}</p>
+                    <p><small class="text-muted">Avec</small> {{ post.actors|nl2br }}</p>
+                    <p><small class="text-muted">Sortie le </small>{{ post.releasedAt|date('d/m/Y') }}</p>
+                </div>
+
+                {% if post.synopsis|length < 270 %}
+                    <p class="synopsis_short">{{ post.synopsis|nl2br }}</p>
+                {% elseif post.synopsis|length > 270 and post.synopsis|length < 430 %}
+                    <p class="synopsis_medium">{{ post.synopsis|nl2br }}</p>
+                {% elseif post.synopsis|length > 430 and post.synopsis|length < 700 %}
+                    <p class="synopsis_long">{{ post.synopsis|nl2br }}</p>
+                {% endif %}
+
+                <div class="buttons mt-5">
+                    <a href="#reviewList" class="add_review btn btn-outline-dark mb-3 me-2 fs-5 scroll-link" id="seeReviews">Voir les critiques</a>
+                    <a href="#add_review" class="add_review btn btn-outline-dark mb-3 me-2 fs-5 scroll-link" id="addReview">Ajouter une critique</a>
+                </div>
+                    {% if post in favposts %}
+                        <a class="suppr_fav btn btn-outline-warning mb-3 fs-5" href="{{ path('remove_favposts', {'id':post.id}) }}">Supprimer des favoris</a>
+                        <i class="heart fas fa-heart"></i>
+                    {% else %}
+                        <a class="add_fav btn btn-outline-warning mb-3 fs-5" href="{{ path('add_favposts', {'id':post.id}) }}">Ajouter en favoris</a>
+                    {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="admin_buttons">
+                        <a class="post_admin btn btn-outline-dark mb-3" href="{{ path('post_edit', {'id':post.id}) }}">Modifier ce post</a>
+                        <a class="post_admin btn btn-outline-dark mb-3" href="{{ path('post_delete', {'id':post.id}) }}">Supprimer ce post</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row youtube mt-5 mb-5 w-75">
+            <h2 class="fs-1 mb-4 text-center">Bande annonce</h2>
+            <iframe width="300" height="500" src="{{ post.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="review" id="add_review">
+        {% include "reviews/add.html.twig" %}
+    </div>
+    <div id="reviewList" class="container-lg reviews mt-5 w-75">
+        {% for review in reviews|reverse %}
+            <div class="seereview row align-items-center">
+                <div class="form-control mb-3">
+                    <p class="user text-muted">Critique de 
+                        <a href="{{ path('user_profile', {'id':review.user.id}) }}" style="text-decoration: none;">{{ review.user.username }} 
+                            {# <img src="{{ asset( 'uploads/profilePicture/' ~ review.user.profilePicture) }}" alt="profile picture user" style="width:50px;"> #}
+                        </a>
+                    </p>
+                    <p class="fs-5 mb-1">{{ review.title }}</p>
+                    
+                    {% if review.note == 1 %}
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                    {% endif %}
+                    {% if review.note == 2 %}
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                    {% endif %}
+                    {% if review.note == 3 %}
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                    {% endif %}
+                    {% if review.note == 4 %}
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="far fa-star  text-warning"></i>
+                    {% endif %}
+                    {% if review.note == 5 %}
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                        <i class="fas fa-star  text-warning"></i>
+                    {% endif %}
+
+                    <p class="mt-1">{{ review.content|nl2br }}</p>
+                    <p>
+                        <small class="text-muted">Le </small>{{ review.publishedAt|date('d/m/Y') }}
+                        <small class="text-muted"> à </small>{{ review.publishedAt|date('H:i') }}
+                    </p>
+
+                    <button class="see_comments btn btn-primary me-2">Voir les réponses</button>
+                    <button class="addComment btn btn-outline-dark">Répondre à {{ review.user.username }}</button>
+
+                    <div class="comment mt-3">
+                        {% include "comments/add.html.twig" %}
+                    </div>
+                    <div class="form-control commentsList mt-2 w-75 border-0">
+                        {% for comment in comments|reverse %}
+                        {% if review.id == comment.review.id %}
+                            <hr>
+                            <p class="mb-2">
+                                <small class="text-muted">Réponse de </small>
+                                <a href="{{ path('user_profile', {'id':review.user.id}) }}" style="text-decoration: none;">{{ comment.user.username }}</a>
+                                <small class="text-muted"> le </small>{{ comment.publishedAt|date('d/m/Y') }}
+                                <small class="text-muted"> à </small>{{ comment.publishedAt|date('H:i') }}
+                            </p>
+                            <p class="mb-3">{{ comment.content}}<p>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    {% block javascripts %}
+        <script>
+
+            /* const seeReviews = document.getElementById("seeReviews");
+            const reviews = document.getElementsByClassName("reviews");
+            
+            seeReviews.onclick = function () {
+                if (reviews[0].style.display !== "block") {
+                    reviews[0].style.display = "block";
+                } else {
+                    reviews[0].style.display = "none";
+                }
+                review[0].style.display = "none";
+            }; */
+
+            const addReview = document.getElementById("addReview");
+            const review = document.getElementsByClassName("review");
+            
+            addReview.onclick = function () {
+                if (review[0].style.display !== "block") {
+                    review[0].style.display = "block";
+                } else {
+                    review[0].style.display = "none";
+                }
+                reviews[0].style.display = "none";
+            };
+
+            const addComment = document.getElementsByClassName("addComment");
+            const comment = document.getElementsByClassName("comment");
+
+            for(let i=0; i<2; i++){
+                addComment[i].onclick = function () {
+                    if (comment[i].style.display !== "block") {
+                        comment[i].style.display = "block";
+                    } else {
+                        comment[i].style.display = "none";
+                    }
+                    addComment.style.display ='none'
+                };
+            };
+
+            
+            const see_comments = document.getElementsByClassName("see_comments");
+            const commentsList = document.getElementsByClassName("commentsList");
+            
+            for(let i=0; i<5; i++){
+                see_comments[i].onclick = function () {
+                    if (commentsList[i].style.display !== "block") {
+                        commentsList[i].style.display = "block";
+                    } else {
+                        commentsList[i].style.display = "none";
+                    }
+                };
+            };
+        
+
+            $('.scroll-link').click(function(e) {
+                e.preventDefault();
+                var anchor = $(this.hash);
+                $('html, body').animate({ 
+                    scrollTop: anchor.offset().top 
+                }, 1250);
+            });
+
+        </script>
+    {% endblock %}
+{% endblock %}

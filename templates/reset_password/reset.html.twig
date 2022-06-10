@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialiser votre mot de passe{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/password/reset.css')}}">
+{% endblock %}
+
+
+<img id="logo" src="{{asset('popcorn_logo.svg')}}" alt="logo">
+<div class="container-lg">
+    <div class="row">
+        <div class="col">
+            <h1 class="titlec text-center">CHANGEZ VOTRE MOT DE PASSE</h1>
+            <div class="check text-center">
+                {{ form_start(resetForm) }}
+                <div>
+                    <label  class="form-label mt-4">{{ form_label(resetForm.plainPassword.first, 'Nouveau mot de passe') }}</label>
+                    <div>
+                        {{ form_widget(resetForm.plainPassword.first) }}
+                    </div>
+                </div>
+                <div>
+                    <label  class="form-label mt-3">{{ form_label(resetForm.plainPassword.second, 'Répétez votre mot de passe') }}</label>
+                    <div>
+                        {{ form_widget(resetForm.plainPassword.second) }}
+                    </div>
+                </div>
+                <div class="mt-4 mb-2 text-center">
+                    <button class="connect btn btn-outline-primary fs-4">Modifier</button>
+                </div>
+                {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

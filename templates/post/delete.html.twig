@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un post{% endblock %}
+
+{% block body %}
+
+    <form>
+        <h3>Supprimer {{ post.title }} ?</h3>
+        <button class="btn btn-primary" type="submit" name="submit">Oui</button>
+        <a class="btn btn-dark" href="{{ path('post_view', {id: post.id}) }}">Annuler</a>
+    </form>
+
+{% endblock %}
+

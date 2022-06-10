@@ -1,0 +1,13 @@
+{% block body %}
+
+<form method="post" action="{{ path('comments_add', {'id':review.id}) }}">
+    <div class="row">
+        <div class="mb-3 col-6">
+            <textarea name="content" id="content" rows="2" class="form-control"
+                placeholder="Repondre à {{ review.user.username }}"></textarea>
+            <button class="btn btn-dark mt-3" type="submit">Répondre</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+/* #user_results{
+    display: none;
+}
+
+#post_results{
+    display: none;
+} */
+
+#userEmpty{
+    display: none;
+}
+
+#postEmpty{
+    display: none;
+}
+
+.search button{
+    border: none;
+    background-color: #eff2f5;
+}
+
+.search button i{
+    color: #7C80B6;
+    font-size: 50px;
+}
+
+.search button i:hover{
+    color: #a9ce6b;
+}
+
+#users{
+    width: 155px;
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+#users:hover{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+    color: #eff2f5;
+}
+
+#users:focus{
+    background-color: #7C80B6;
+    color: #eff2f5;
+}
+
+#posts{
+    width: 155px;
+    color:#7C80B6;
+    border-color:#7C80B6;
+}
+
+#posts:hover{
+    border-color:#7C80B6;
+    background-color:#7C80B6;
+    color: #eff2f5;
+}
+
+#posts:focus{
+    background-color: #7C80B6;
+    color: #eff2f5;
+}
+
+.table .profilePicture{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.table .cover{
+    width: 70px;
+    border-radius: 8px;
+}
+
+.table tr{
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover{
+    background-color: #7c80b6c9;
+    cursor: pointer;
+}
+
+.table .admin p{
+    color: #eff2f5;
+    background-color: #57C647;
+    border-radius: 10px;
+    width: 100px;
+    padding: 3px 0px 3px 0px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.table .user p{
+    color: #f8f9fa;
+    background-color: #479EC6;
+    border-radius: 10px;
+    width: 100px;
+    padding: 3px 0px 3px 0px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.noResult{
+    margin-bottom: 300px;
+}
+
+.results{
+    margin-bottom: 200px;
+}

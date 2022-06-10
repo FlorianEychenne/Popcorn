@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/register/register.css')}}">
+{% endblock %}
+
+{% for flashError in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
+
+<img id="logo" src="{{asset('popcorn_logo.svg')}}" alt="logo">
+    <div class="container-lg">
+        <h1 class="title text-center">S'INSCRIRE</h1>
+
+    {{ form_start(registrationForm) }}
+        <div class="form-error">
+            {{ form_errors(registrationForm.firstname) }}
+            {{ form_errors(registrationForm.lastname) }}
+            {{ form_errors(registrationForm.username) }}
+            {{ form_errors(registrationForm.gender) }}
+            {{ form_errors(registrationForm.birthday) }}
+            {{ form_errors(registrationForm.email) }}
+            {{ form_errors(registrationForm.plainPassword.first) }}
+            {{ form_errors(registrationForm.plainPassword.second) }}
+            {{ form_errors(registrationForm.profile_picture) }}
+            {{ form_errors(registrationForm.preferences) }}
+        </div>
+    
+        <div class="row text-center mt-3">
+            <div class="col">
+                <label>{{ form_label(registrationForm.firstname, 'Prénom') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.firstname) }}
+                </div>
+            </div>
+            <div class="col">
+                <label>{{ form_label(registrationForm.lastname, 'Nom') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.lastname) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-3">
+            <div class="col">
+                <label>{{ form_label(registrationForm.username, 'Pseudo') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.username) }}
+                </div>
+            </div>
+            <div class="col">
+                <label>{{ form_label(registrationForm.gender, 'Genre') }}</label>
+            <div>
+                {{ form_widget(registrationForm.gender) }}
+            </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-3">
+            <div class="col">
+                <label>{{ form_label(registrationForm.email, 'Email') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.email) }}
+                </div>
+            </div>
+            <div class="col">
+                <label>{{ form_label(registrationForm.birthday, 'Date de naissance') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.birthday) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-3">
+            <div class="col">
+                <label>{{ form_label(registrationForm.plainPassword.first, 'Mot de passe') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.plainPassword.first) }}
+                </div>
+            </div>
+            <div class="col">
+                <label>{{ form_label(registrationForm.plainPassword.second, 'Répéter votre mot de passe') }}</label>
+                <div>
+                    {{ form_widget(registrationForm.plainPassword.second) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-4">
+            <div class="col">
+                <label>{{ form_label(registrationForm.profile_picture, 'Photo de profil :') }}</label>
+                <div>
+                {{ form_widget(registrationForm.profile_picture) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center mt-4">
+            <label class="mb-2">{{ form_label(registrationForm.preferences, 'Préférences') }}</label>
+            <div>
+                {{ form_widget(registrationForm.preferences,{'attr': {'class': 'prefchoice'}}) }}
+            </div>
+        </div>
+
+        <div class="text-center mb-3 mt-4">
+            <button type="button" class="g-recaptcha btnreg btn btn-outline-secondary " data-callback="onSubmit" data-sitekey="6LcXfQceAAAAAOhYI2L626dF42wyQc1XDKtSpICW">S'inscrire</button>
+        </div>
+
+        {{ form_end(registrationForm) }}
+        
+        
+        <a class="nav-link text-muted text-center" href="{{ path("login")}}">Déjà un compte ? Se connecter</a>
+   
+
+    {% endblock %}
+
+    
+{% block javascripts %}
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+      document.querySelector("[name='registration_form']").submit();
+    }
+  </script>
+{% endblock %}

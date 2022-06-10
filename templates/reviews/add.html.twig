@@ -1,0 +1,41 @@
+<style>
+    .add{
+        border-color:#7C80B6;
+        background-color:#7C80B6;
+        width: 130px;
+        font-size: 19px;
+    }
+    .add:hover{
+        background-color:#6a6eac;
+    }
+</style>
+
+{% block body %}
+<div class="container-lg w-75 mt-5">
+    <h1 class="fs-2 text-center mb-4">Ajoutez une critique à ce film</h1>
+    <form method="post"  action="{{ path('reviews_add', {'id':post.id}) }}">
+        <div class="row">
+            <div class="mb-3 fs-4">
+                <label for="title">Titre de votre critique</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+        </div>
+        <div class='row'>
+            <div class="mb-3 fs-4">
+                <label for="content">Rédiger votre critique</label>
+                <textarea name="content" id="content" rows="10" class="form-control" cols="4"></textarea>
+            </div>
+        </div>
+        <div class="note fs-4">
+            <label for="note" class="form-label me-2">Note : </label>
+            <input class="star" type="radio" name="note" value="1">1<i class="fas fa-star  text-warning"></i>
+            <input class="star" type="radio" name="note" value="2">2<i class="fas fa-star  text-warning"></i>
+            <input class="star" type="radio" name="note" value="3">3<i class="fas fa-star  text-warning"></i>
+            <input class="star" type="radio" name="note" value="4">4<i class="fas fa-star  text-warning"></i>
+            <input class="star" type="radio" name="note" value="5">5<i class="fas fa-star  text-warning"></i>
+        </div>
+        <button class="add btn btn-primary mt-3 mb-3" type="submit">Ajouter</button>
+    </form>
+</div>
+
+{% endblock %}

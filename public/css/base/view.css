@@ -1,0 +1,45 @@
+#scrollToTop {
+    width: 55px;
+    height: 55px;
+    display:flex;
+    background-color: #7C80B6;
+    text-decoration: none;
+    border-radius: 100%;
+    bottom:3rem;
+    right:3rem;
+    z-index:1;
+    position:fixed;
+    box-shadow: 3px 3px 5px grey; 
+}
+
+
+#scrollToTop a i {
+    color:#eff2f5;
+    font-size: 2rem;
+    margin-left:50%;
+    margin-top:50%;
+    transform:translate(-50%, -50%);
+    text-shadow: 3px 3px 5px black; 
+  
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    #logo{
+        width:40px;
+        height:65px;
+    }
+
+    #scrollToTop {
+        width: 40px;
+        height: 40px; 
+        bottom:3rem;
+        right:3rem;
+    }
+
+    #scrollToTop a i {
+        font-size: 1.5rem; 
+    }
+}

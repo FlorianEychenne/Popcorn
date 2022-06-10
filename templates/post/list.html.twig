@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des films{% endblock %}
+
+{% block body %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/post/list.css')}}">
+{% endblock %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <div class="categories">
+        <button type="button" class="category btn btn-outline-secondary fs-5 mb-3" data-filter="all">Toutes catégories</button>
+        {% for categorie in categories %}
+            <button type="button" class="category btn btn-outline-secondary fs-5 mb-3" data-filter=".{{categorie}}">{{categorie}}</button>
+        {% endfor %}
+    </div>
+
+    <div class="container-fluid">
+        <h1>Catalogue des films</h1>
+            <div class="content row justify-content-center mb-5 mt-4">
+                {% for post in posts %} 
+                    <div class="post col-sm-3 mix {{ post.categories|join(' ')}}">
+                        <img src="{{asset("uploads/covers/" ~ post.image)}}" alt="affiche du film">
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.synopsis|striptags|slice(0, 119) ~ '...'}}</p>
+                        <a href="{{ path('post_view', {id: post.id}) }}" class="button btn btn-secondary mb-1">Voir les détails</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+        
+            
+  
+{% endblock %}
+
+
+{% block javascripts %}
+<script src="{{ asset('js/mixitup.min.js') }}"></script>
+<script>
+    var containerEl = document.querySelector('.content');
+    var mixer = mixitup(containerEl);
+</script>
+{% endblock %}
